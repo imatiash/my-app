@@ -1,3 +1,24 @@
-<p>
-  home works!
-</p>
+<nav>
+  <li *ngFor="let item of navItems">
+
+    <span 
+    (click)="onClick()" 
+    [class.boldText] ="item === 'Home'" 
+    [class.redText] ="item !== 'Home'"
+    [style.fontSize] ="size">
+    {{item}}
+    </span>
+  </li>
+</nav>
+
+<input type="text" [(ngModel)] = "size">
+
+<nav>
+  <li *ngFor="let item of navItems">
+
+    <span 
+    [bold]>
+    {{item}}
+    </span>
+  </li>
+</nav>
