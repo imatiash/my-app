@@ -18,3 +18,19 @@
     <span [bold]>{{item}}</span>
   </li>
 </nav>
+
+<!--<div *ngFor="let user of users">
+  <p *while = "user.id < 3">
+    {{user.name}}
+  </p>
+</div>-->
+
+<div> Factorial {{x}} = {{x | factorial}}
+<div> Join array string: {{joinItems | join : 2: 4}}
+
+  <div *ngFor="let user of users">
+  <p>
+    {{user.firstName}} | {{user.lastName}}
+  </p>
+</div>
+  
