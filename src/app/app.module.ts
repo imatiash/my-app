@@ -19,19 +19,19 @@ import { NotFoundComponent } from './not-found/not-found.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     boldDirective,
-    WhileDirective,
     FactorialPipe,
     JoinPipe,
+    HomeComponent,
+    WhileDirective,
     CatalogComponent,
     ContactUsComponent,
     NotFoundComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
-    FormsModule,
-    AppRoutingModule
+    FormsModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
