@@ -1,3 +1,11 @@
 <h1>{{title}}</h1>
 <!--<app-home></app-home>-->
+
+<!--Implement navigation for app-->
+<nav>
+    <li *ngFor = "let item of navItems">
+        <a [routerLink] = "item.link"> {{item.name}}</a>
+    </li>
+</nav>
+<!--Used router-outlet directive to show containing of routing module-->
 <router-outlet></router-outlet>
