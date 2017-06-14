@@ -3,8 +3,12 @@
 
 <!--Implement navigation for app-->
 <nav>
+    <!--Add navigation links with routerLink directive to provide app component-->
+    <!--Add routerLinkActive directive to style active link-->
     <li *ngFor = "let item of navItems">
-        <a [routerLink] = "item.link"> {{item.name}}</a>
+        <a [routerLink] = "item.link"
+           routerLinkActive = "active-link"
+           [routerLinkActiveOptions] = "{exact: true}"> {{item.name}}</a>
     </li>
 </nav>
 <!--Used router-outlet directive to show containing of routing module-->

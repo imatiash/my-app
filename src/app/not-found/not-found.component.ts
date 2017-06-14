@@ -9,6 +9,10 @@ export class NotFoundComponent implements OnInit {
 
   constructor() { }
 
+  goBack(){
+    window.history.back();
+  }
+
   ngOnInit() {
   }
 
