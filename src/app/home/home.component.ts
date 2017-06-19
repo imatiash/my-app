@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms'
+
+// import { NgForm } from '@angular/forms'
+
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 
 import{boldDirective} from '../directives/bold.directive';
 
@@ -13,37 +16,59 @@ import {UserService} from '../services/user.service';
 })
 export class HomeComponent implements OnInit {
 
-  //navItems: Array<string>=['Home','Shop','ContactUs'];
-  // size: string = '24px';
-  // x: number = 5;
-  // joinItems: Array<string> = ["Apple", "Banana", "Mango", "Orange"];
+ isFormSubmited: boolean = false;
 
   users: User[];
+  selectedUser: User;
 
-  constructor(private userService: UserService) {}
+  userForm: FormGroup;
 
-  ngOnInit() {
+  REG_EXP: any = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/;
+
+  constructor( 
+    private formBuilder:FormBuilder,
+    private userService: UserService) 
+    {
     this.users = this.userService.getUsers();
+    }
+
+  ngOnInit():void {
+  this.userForm = this.formBuilder.group({
+    id: [this.selectedUser? this.selectedUser.id: null],
+    firstName: [this.selectedUser? this.selectedUser.firstName: null, Validators.required],
+    lastName: [this.selectedUser? this.selectedUser.lastName: null, Validators.required],
+    email: [this.selectedUser? this.selectedUser.email: null, [Validators.required, Validators.pattern(this.REG_EXP)]],
+    age: [this.selectedUser? this.selectedUser.age: null, Validators.required]
+  })
   }
 
-  onSubmit( e: Event, form: NgForm) {
+  onSubmit( e: Event, form:FormGroup) {
+    this.isFormSubmited = true;
     e.preventDefault();
-    form.controls["firstName"].value;
-    form.controls["lastName"].value;
-    form.controls["email"].value;
-     form.controls["age"].value;
-      this.users.push(new User(
-      form.controls["firstName"].value,
-      form.controls["lastName"].value,
-      form.controls["email"].value,
-      form.controls["age"].value));
 
-     this.userService.addUser( 
-      form.controls["firstName"].value,
-      form.controls["lastName"].value,
-      form.controls["email"].value,
-      form.controls["age"].value
-      );
+    this.userForm.controls["firstName"].markAsUntouched();
+   this.userForm.controls["lastName"].markAsUntouched();
+   this.userForm.controls["email"].markAsUntouched();
+   this.userForm.controls["age"].markAsUntouched();
+   
+    if(this.userForm.valid){
+     let user:User = form.value;
+     this.userService.addUser(user);
+     this.userForm.reset();
+     this.isFormSubmited = false;
+    }
+  }
+
+clearControlValidation(name:string){
+  this.userForm.controls[name].markAsTouched();
+}
+  onSelect(user:User){
+  this.selectedUser = user;
+  this.userForm.controls["id"].setValue(this.selectedUser.id);
+  this.userForm.controls["firstName"].setValue(this.selectedUser.firstName);
+  this.userForm.controls["lastName"].setValue(this.selectedUser.lastName);
+  this.userForm.controls["email"].setValue(this.selectedUser.email);
+  this.userForm.controls["age"].setValue(this.selectedUser.age);
   }
 
   // onClick()

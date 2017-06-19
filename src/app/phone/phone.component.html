@@ -1,0 +1,65 @@
+<!--Example1-->
+<!--<div> 
+                    <div>
+                        <label>Название модели</label>
+                        <input  name="title" [(ngModel)]="title" />
+                    </div>
+                    <div>
+                        <label>Цена</label>
+                        <input type="number"  name="price" [(ngModel)]="price" />
+                    </div>
+                    <div >
+                        <label>Производитель</label>
+                        <select name="company" [(ngModel)]="company">
+                            <option  *ngFor="let comp of companies" [value]="comp">
+                                {{comp}}
+                            </option>
+                        </select>
+                    </div>
+                    <div>
+                        <button (click)="addPhone(title, price, company)">Добавить</button>
+                    </div>
+              </div>
+              <div><h3>Добавленные элементы</h3>
+                    <ul *ngFor="let p of phones">
+                        <li>{{p.title}} ({{p.company}}) - {{p.price}}</li>
+                    </ul>
+</div>-->
+<!--Example2-->
+<div> 
+                    <div>
+                        <label>Название модели</label>
+                        <input name="title"
+                            [(ngModel)]="phone.title" #phoneTitle="ngModel" />
+                    </div>
+                    <div>
+                        <label>Цена</label>
+                        <input type="number" name="price"
+                            [(ngModel)]="phone.price" #phonePrice="ngModel" />
+                    </div>
+                    <div>
+                        <label>Производитель</label>
+                        <select name="company"
+                            [(ngModel)]="phone.company" #phoneCompany="ngModel">
+                            <option  *ngFor="let comp of companies" [value]="comp">
+                                {{comp}}
+                            </option>
+                        </select>
+                    </div>
+                    <div>
+                        <button (click)="addPhone(phoneTitle, phonePrice, phoneCompany)">
+                            Добавить
+                        </button>
+                    </div>
+                    <div>
+                        <p>{{phoneTitle.name}} : {{phoneTitle.model}}</p>
+                        <p>{{phonePrice.name}} : {{phonePrice.model}}</p>
+                        <p>{{phoneCompany.name}} : {{phoneCompany.model}}</p>
+                    </div>
+
+                    <div><h3>Добавленные элементы</h3>
+                    <ul *ngFor="let p of phones">
+                        <li>{{p.title}} ({{p.company}}) - {{p.price}}</li>
+                    </ul>
+                    </div>
+              </div>
