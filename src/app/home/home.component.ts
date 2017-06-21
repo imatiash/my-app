@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+// import { Response } from '@angular/http'
 
 // import { NgForm } from '@angular/forms'
 
@@ -16,6 +17,7 @@ import {UserService} from '../services/user.service';
 })
 export class HomeComponent implements OnInit {
 
+ error: any;
  isFormSubmited: boolean = false;
 
   users: User[];
@@ -29,7 +31,7 @@ export class HomeComponent implements OnInit {
     private formBuilder:FormBuilder,
     private userService: UserService) 
     {
-    this.users = this.userService.getUsers();
+    // this.users = this.userService.getUsers();
     }
 
   ngOnInit():void {
@@ -39,7 +41,23 @@ export class HomeComponent implements OnInit {
     lastName: [this.selectedUser? this.selectedUser.lastName: null, Validators.required],
     email: [this.selectedUser? this.selectedUser.email: null, [Validators.required, Validators.pattern(this.REG_EXP)]],
     age: [this.selectedUser? this.selectedUser.age: null, Validators.required]
-  })
+  });
+
+  //Promise
+      this.userService.getUsers().
+      then(
+        data=> this.users = data
+      ) 
+
+  //Observable
+      // this.userService.getUsers()
+      // .subscribe(
+      //   data => this.users = data,
+      //   err => {
+      //     this.error = err;
+      //     console.log(this.error);
+      //   }
+      // )   
   }
 
   onSubmit( e: Event, form:FormGroup) {
@@ -53,7 +71,7 @@ export class HomeComponent implements OnInit {
    
     if(this.userForm.valid){
      let user:User = form.value;
-     this.userService.addUser(user);
+    //  this.userService.addUser(user);
      this.userForm.reset();
      this.isFormSubmited = false;
     }

@@ -1,14 +1,4 @@
-.boldText
-{
-    font-weight: bold;
-}
-
-.redText
-{
-    color: red;
-}
-
-.label{
+label {
     display: block;
     font-weight: bold;
     text-align: right;
@@ -17,19 +7,18 @@
 .form {
     width: 500px;
 }
-.form__row{
-display: flex;
-justify-content: space-between;
-align-items: center;
-width: 295px
-}
-.form__input{
+.form__input {
     width: 100%;
 }
-.form__input input{
+.form__input input {
     width: 100%;
 }
-
-.form__row + .form__row{
-    margin-top: 5px
+.form__row {
+    width: 295px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.form__row + .form__row {
+    margin-top: 5px;
 }

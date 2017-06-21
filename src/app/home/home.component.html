@@ -5,105 +5,56 @@
 </ul>
 
 <div>
-  <form [formGroup]="userForm" novalidate (ngSubmit) = "onSubmit($event,userForm)">
-    <div class = "form__row">
-        <label for="firstName">First Name:</label>
-        <div class = "form__input">
-          <input id="firstName" 
-                (change)="clearControlValidation('firstName')"
-                (focus)="clearControlValidation('firstName')"
-                formControlName="firstName" type="text"  >
-        <div class="message message__error" 
-            *ngIf = "isFormSubmited && userForm.controls['firstName'].invalid && userForm.controls['firstName'].untouched">
-            First Name  is reuired
+  <form [formGroup]="userForm" novalidate (ngSubmit)="onSubmit($event,userForm)">
+    <div class="form__row">
+      <label for="firstName">First Name:</label>
+      <div class="form__input">
+        <input id="firstName" (change)="clearControlValidation('firstName')" (focus)="clearControlValidation('firstName')" formControlName="firstName"
+          type="text">
+        <div class="message message__error" *ngIf="isFormSubmited && userForm.controls['firstName'].invalid && userForm.controls['firstName'].untouched">
+          First Name is reuired
         </div>
       </div>
     </div>
-    <div class = "form__row">
+    <div class="form__row">
       <label for="lastName">Last Name:</label>
-      <div class = "form__input">
-          <input id="lastName" 
-                (change)="clearControlValidation('lastName')"
-                (focus)="clearControlValidation('lastName')"
-                formControlName="lastName" type="text"  >
-            <div class="message message__error" 
-           *ngIf = "isFormSubmited && userForm.controls['lastName'].invalid && userForm.controls['lastName'].untouched">
-            Last Name  is reuired
-          </div>
+      <div class="form__input">
+        <input id="lastName" (change)="clearControlValidation('lastName')" (focus)="clearControlValidation('lastName')" formControlName="lastName"
+          type="text">
+        <div class="message message__error" *ngIf="isFormSubmited && userForm.controls['lastName'].invalid && userForm.controls['lastName'].untouched">
+          Last Name is reuired
+        </div>
       </div>
     </div>
-    <div class = "form__row">
+    <div class="form__row">
       <label for="email">Email:</label>
-      <div class = "form__input">
-          <input id="email" 
-                (change)="clearControlValidation('email')"
-                (focus)="clearControlValidation('email')"
-                formControlName="email" type="text">  
-            <div class="message message__error" 
-           *ngIf = "isFormSubmited && userForm.controls['email'].invalid && userForm.controls['email'].untouched">
-           <span *ngIf = "userForm.controls['email'].hasError
+      <div class="form__input">
+        <input id="email" (change)="clearControlValidation('email')" (focus)="clearControlValidation('email')" formControlName="email"
+          type="text">
+        <div class="message message__error" *ngIf="isFormSubmited && userForm.controls['email'].invalid && userForm.controls['email'].untouched">
+          <span *ngIf="userForm.controls['email'].hasError
            ('required')">
            Email is required
            </span>
-            <span *ngIf = "userForm.controls['email'].hasError
+          <span *ngIf="userForm.controls['email'].hasError
            ('pattern')">
            Email is wrong format
            </span>
+        </div>
       </div>
-     </div>
     </div>
-    <div class = "form__row">
+    <div class="form__row">
       <label for="age">Age:</label>
-      <div class = "form__input">
-          <input id="age" 
-                (change)="clearControlValidation('age')"
-                (focus)="clearControlValidation('age')"
-                formControlName="age" type="text"  >
-            <div class="message message__error" 
-           *ngIf = "isFormSubmited && userForm.controls['age'].invalid && userForm.controls['age'].untouched">
-            Age Name  is reuired
+      <div class="form__input">
+        <input id="age" (change)="clearControlValidation('age')" (focus)="clearControlValidation('age')" formControlName="age" type="text">
+        <div class="message message__error" *ngIf="isFormSubmited && userForm.controls['age'].invalid && userForm.controls['age'].untouched">
+          Age Name is reuired
+        </div>
       </div>
     </div>
-    </div>
-    <div class = "form_row">
-            <input type="submit" value="submit" >
+    <div class="form_row">
+      <input type="submit" value="submit">
       <!--<input type="submit" value="submit" [disabled]="userForm.invalid">-->
     </div>
   </form>
 </div>
-<!--<nav>
-  <li *ngFor="let item of navItems">
-
-    <span 
-    (click)="onClick()" 
-    [class.boldText] ="item === 'Home'" 
-    [class.redText] ="item !== 'Home'"
-    [style.fontSize] ="size">
-    {{item}}
-    </span>
-  </li>
-</nav>
-
-<input type="text" [(ngModel)] = "size">-->
-
-<!--<nav>
-  <li *ngFor="let item of navItems">
-    <span [bold]>{{item}}</span>
-  </li>
-</nav>-->
-
-<!--<div *ngFor="let user of users">
-  <p *while = "user.id < 3">
-    {{user.name}}
-  </p>
-</div>-->
-
-<!--<div> Factorial {{x}} = {{x | factorial}}
-<div> Join array string: {{joinItems | join : 2: 4}}
-
-  <div *ngFor="let user of users">
-  <p>
-    {{user.firstName}} | {{user.lastName}}
-  </p>
-</div>-->
-  

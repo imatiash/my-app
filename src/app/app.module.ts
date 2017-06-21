@@ -15,6 +15,8 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { PhoneComponent } from './phone/phone.component';
 
+import {HttpModule} from '@angular/http';
+
 
 
 @NgModule({
@@ -34,6 +36,7 @@ import { PhoneComponent } from './phone/phone.component';
     AppRoutingModule,
     BrowserModule,
     FormsModule,
+    HttpModule,
     ReactiveFormsModule
   ],
   providers: [UserService],
