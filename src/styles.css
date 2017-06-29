@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+    box-sizing: border-box;
+}
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+a, a:visited {
+    color: #355e8b;
+    text-decoration: none;
+}
+a:hover {
+    color: #003366;
+    text-decoration: underline;
+}
+body {
+    font: normal normal 16px/18px "Roboto", sans-serif;
+    color: #444444;
+}
+nav {
+    list-style-type: none;
+}

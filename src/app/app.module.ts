@@ -1,4 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
+// Imported Animations module fro angular animations
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './modules/routing.module';
@@ -16,6 +18,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { PhoneComponent } from './phone/phone.component';
 
 import {HttpModule} from '@angular/http';
+import { RegistrationComponent } from './registration/registration.component';
 
 
 
@@ -30,11 +33,13 @@ import {HttpModule} from '@angular/http';
     CatalogComponent,
     ContactUsComponent,
     NotFoundComponent,
-    PhoneComponent
+    PhoneComponent,
+    RegistrationComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpModule,
     ReactiveFormsModule

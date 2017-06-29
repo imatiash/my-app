@@ -22,3 +22,16 @@ label {
 .form__row + .form__row {
     margin-top: 5px;
 }
+
+
+.user__list {
+    list-style-type: none;
+    width: 300px;
+}
+.user__list-item {
+    cursor: pointer;
+    padding: 10px 20px;
+}
+.user__list-item + .user__list-item {
+    margin-top: 10px;
+}

@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// import { Response } from '@angular/http'
-
-// import { NgForm } from '@angular/forms'
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 
@@ -10,17 +7,22 @@ import{boldDirective} from '../directives/bold.directive';
 import {User} from '../models/user';
 import {UserService} from '../services/user.service';
 
+// imported animations from common animation module
+import { Animations } from "../common/animations.common";
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  animations: [Animations.FLY_IN_OUT, Animations.USER_STATE]
 })
 export class HomeComponent implements OnInit {
 
- error: any;
- isFormSubmited: boolean = false;
+ //error: any;
+ isFormSubmitted: boolean = false;
 
   users: User[];
+  user: User;
   selectedUser: User;
 
   userForm: FormGroup;
@@ -32,6 +34,10 @@ export class HomeComponent implements OnInit {
     private userService: UserService) 
     {
     // this.users = this.userService.getUsers();
+  }
+  
+     addNewUser() {
+        this.selectedUser = new User();
     }
 
   ngOnInit():void {
@@ -61,7 +67,7 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmit( e: Event, form:FormGroup) {
-    this.isFormSubmited = true;
+    this.isFormSubmitted = true;
     e.preventDefault();
 
     this.userForm.controls["firstName"].markAsUntouched();
@@ -69,17 +75,57 @@ export class HomeComponent implements OnInit {
    this.userForm.controls["email"].markAsUntouched();
    this.userForm.controls["age"].markAsUntouched();
    
-    if(this.userForm.valid){
+    // if(this.userForm.valid){
      let user:User = form.value;
-    //  this.userService.addUser(user);
+     this.userService.addUser(user);
      this.userForm.reset();
-     this.isFormSubmited = false;
-    }
+     this.isFormSubmitted = false;
+    //}
   }
 
+  // // Method which will be called on form submit
+  //   onSubmit(e: Event, form: FormGroup) {
+  //       this.isFormSubmitted = true;
+  //       // e.preventDefault() to disable of page reloading after submit
+  //       e.preventDefault();
+  //       // Update controls value and validity
+  //       this.userForm.controls["firstName"].updateValueAndValidity();
+  //       this.userForm.controls["lastName"].updateValueAndValidity();
+  //       this.userForm.controls["email"].updateValueAndValidity();
+  //       // Mark controls as touched to see error messages
+  //       this.userForm.controls["firstName"].markAsTouched();
+  //       this.userForm.controls["lastName"].markAsTouched();
+  //       this.userForm.controls["email"].markAsTouched();
+        
+  //       if (this.userForm.valid) {
+  //           if(this.selectedUser.id === null) {
+  //               this.userForm.controls["id"].setValue(this.users.length);
+  //               this.users.push(form.value);
+  //           }
+  //           // Added variable user as form value to push new user
+  //           let user: User = form.value;
+  //           // this.userService.addUser(user);
+  //           this.userForm.reset();
+  //           this.isFormSubmitted = false;
+  //       }
+  //   }
+
 clearControlValidation(name:string){
-  this.userForm.controls[name].markAsTouched();
+  // this.userForm.controls[name].markAsTouched();
+          this.userForm.controls[name].markAsPending();
+        this.userForm.controls[name].markAsUntouched();
 }
+
+    onMouseEnter(user: User) {
+        this.user = user;
+        this.user.state = "active";
+    }
+
+    onMouseLeave(user: User) {
+        this.user = user;
+        this.user.state = "inactive";
+    }
+
   onSelect(user:User){
   this.selectedUser = user;
   this.userForm.controls["id"].setValue(this.selectedUser.id);
