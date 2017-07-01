@@ -6,6 +6,9 @@ import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./modules/routing.module";
 import { boldDirective } from "./directives/bold.directive";
 import { FactorialPipe } from "./pipes/factorial.pipe";
+import { OrderByPipe } from "./pipes/orderby.pipe";
+import { SearchFilterPipe } from "./pipes/searchfilter.pipe";
+
 import { FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { HomeComponent } from "./home/home.component";
 import { JoinPipe } from "./pipes/join.pipe";
@@ -42,6 +45,8 @@ import {MaterialModule} from '@angular/material';
     boldDirective,
     FactorialPipe,
     JoinPipe,
+    OrderByPipe,
+    SearchFilterPipe,
     HomeComponent,
     WhileDirective,
     CatalogComponent,

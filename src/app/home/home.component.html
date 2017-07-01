@@ -1,6 +1,6 @@
 <!-- Display all users from user service -->
 <ul class="user__list">
-    <ng-template ngFor let-user | async [ngForOf]="users">
+    <ng-template ngFor let-user | async [ngForOf]="users | OrderBy : '-lastName'" >
         <li 
             [@userState]="user.state"
             [@flyInOut]="user.state"
@@ -13,9 +13,10 @@
     </ng-template>
 </ul>
 
+<input #txtFname placeholder="first name" />
 
 <ul>
-  <li *ngFor="let user of users" (click)="onSelect(user)">
+  <li *ngFor="let user of users | SearchFilter: 'firstName' : txtFname.value" (click)="onSelect(user)">
     {{user.id}} | {{user.firstName}} | {{user.lastName}}
   </li>
 </ul>
