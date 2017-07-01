@@ -1,12 +1,12 @@
 
-import { Injectable } from '@angular/core';
-import { User } from '../models/user';
+import { Injectable } from "@angular/core";
+import { User } from "../models/user";
 import { Http, Response } from "@angular/http";
 
-//Promice
+// Promice
 import "rxjs/add/operator/toPromise";
 
-//Observable
+// Observable
 // import "rxjs/add/operator/map";
 // import "rxjs/add/operator/catch";
 // import "rxjs/add/observable/throw";
@@ -30,14 +30,14 @@ export class UserService {
         private http: Http
     ) {}
 
-//Promise
+// Promise
     getUsers(): Promise<User[]>  {
         const URL = "./assets/user.json";
 
         return this.http.get(URL)
                         .toPromise()
                         .then(
-                           // response => this.users
+                            // response => this.users
                             response => response.json() as User[]
                         )
                         .catch(
@@ -49,7 +49,7 @@ export class UserService {
         console.error(err);
     }
 
-//Observable
+// Observable
     // getUsers(): Observable<User[]>  {
     //     const URL = "./assets/user.json"
     //     return this.http.get(URL)
@@ -64,25 +64,25 @@ export class UserService {
     //     return Observable.throw(err);
     // }
 
-   addUser(user: User) {
-       //change variable user to use adding 
+   addUser(usrs: User[],user: User) {
+       // change variable user to use adding 
        let usr = user;
-       if(usr.id === undefined || usr.id === null)
+       if (usr.id === undefined || usr.id === null)
        {
-        usr.id = this.users.length + 1;
+        usr.id = usrs.length + 1;
         usr.state = "inactive";
-        this.users.push(usr);
+        usrs.push( usr);
        }
-       else{
-           this.editUser(usr);
+       else {
+           this.editUser(usrs, usr);
        }
         
     }
 
-    editUser (user: User){
-    let i: number = this.users.findIndex(item => item.id === user.id);
+    editUser (usrs: User[], user: User){
+    let i: number = usrs.findIndex(item => item.id === user.id);
     if(i !== -1)
-        this.users[i] = user;
+        usrs[i] = user;
 }
 
 registerUser (data: User): Promise<User> {

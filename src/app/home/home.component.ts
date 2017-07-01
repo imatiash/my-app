@@ -1,24 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { FormBuilder, FormGroup, Validators } from "@angular/forms"
 
-import{boldDirective} from '../directives/bold.directive';
+import{boldDirective} from "../directives/bold.directive";
 
-import {User} from '../models/user';
-import {UserService} from '../services/user.service';
+import {User} from "../models/user";
+import {UserService} from "../services/user.service";
 
 // imported animations from common animation module
 import { Animations } from "../common/animations.common";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  selector: "app-home",
+  templateUrl: "./home.component.html",
+  styleUrls: ["./home.component.styl"],
   animations: [Animations.FLY_IN_OUT, Animations.USER_STATE]
 })
 export class HomeComponent implements OnInit {
 
- //error: any;
+ // error: any;
  isFormSubmitted: boolean = false;
 
   users: User[];
@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
     private userService: UserService) 
     {
     // this.users = this.userService.getUsers();
-  }
+    }
   
      addNewUser() {
         this.selectedUser = new User();
@@ -42,17 +42,17 @@ export class HomeComponent implements OnInit {
 
   ngOnInit():void {
   this.userForm = this.formBuilder.group({
-    id: [this.selectedUser? this.selectedUser.id: null],
-    firstName: [this.selectedUser? this.selectedUser.firstName: null, Validators.required],
-    lastName: [this.selectedUser? this.selectedUser.lastName: null, Validators.required],
-    email: [this.selectedUser? this.selectedUser.email: null, [Validators.required, Validators.pattern(this.REG_EXP)]],
-    age: [this.selectedUser? this.selectedUser.age: null, Validators.required]
+    id: [this.selectedUser ? this.selectedUser.id: null],
+    firstName: [this.selectedUser ? this.selectedUser.firstName: null, Validators.required],
+    lastName: [this.selectedUser ? this.selectedUser.lastName: null, Validators.required],
+    email: [this.selectedUser ? this.selectedUser.email: null, [Validators.required, Validators.pattern(this.REG_EXP)]],
+    age: [this.selectedUser ? this.selectedUser.age: null, Validators.required]
   });
 
   //Promise
       this.userService.getUsers().
       then(
-        data=> this.users = data
+        data => this.users = data
       ) 
 
   //Observable
@@ -70,17 +70,17 @@ export class HomeComponent implements OnInit {
     this.isFormSubmitted = true;
     e.preventDefault();
 
-    this.userForm.controls["firstName"].markAsUntouched();
+   this.userForm.controls["firstName"].markAsUntouched();
    this.userForm.controls["lastName"].markAsUntouched();
    this.userForm.controls["email"].markAsUntouched();
    this.userForm.controls["age"].markAsUntouched();
    
-    // if(this.userForm.valid){
+     if (!this.userForm.invalid) {
      let user:User = form.value;
-     this.userService.addUser(user);
+     this.userService.addUser(this.users, user);
      this.userForm.reset();
      this.isFormSubmitted = false;
-    //}
+    }
   }
 
   // // Method which will be called on form submit
@@ -112,7 +112,7 @@ export class HomeComponent implements OnInit {
 
 clearControlValidation(name:string){
   // this.userForm.controls[name].markAsTouched();
-          this.userForm.controls[name].markAsPending();
+        this.userForm.controls[name].markAsPending();
         this.userForm.controls[name].markAsUntouched();
 }
 
@@ -134,10 +134,5 @@ clearControlValidation(name:string){
   this.userForm.controls["email"].setValue(this.selectedUser.email);
   this.userForm.controls["age"].setValue(this.selectedUser.age);
   }
-
-  // onClick()
-  // {
-  //   this.size='48px'
-  // }
 
 }

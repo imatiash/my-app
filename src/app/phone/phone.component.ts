@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { NgModel} from '@angular/forms';
+import { Component, OnInit } from "@angular/core";
+import { NgModel} from "@angular/forms";
 
 export class Phone{
     constructor(public title: string, 
@@ -9,9 +9,9 @@ export class Phone{
 }
 
 @Component({
-  selector: 'app-phone',
-  templateUrl: './phone.component.html',
-  styleUrls: ['./phone.component.css']
+  selector: "app-phone",
+  templateUrl: "./phone.component.html",
+  styleUrls: ["./phone.component.styl"]
 })
 export class PhoneComponent implements OnInit {
 
@@ -31,7 +31,7 @@ export class PhoneComponent implements OnInit {
           phones: Phone[] = [];
      phone: Phone = new Phone("", 0, "Samsung");
      companies: string[] = ["Apple", "Huawei", "Xiaomi", "Samsung", "LG", "Motorola", "Alcatel"];
-    addPhone(title:NgModel, price: NgModel, comp: NgModel){
+    addPhone(title:NgModel, price: NgModel, comp: NgModel) {
       this.phones.push(new Phone(title.value, price.value, comp.value));
         console.log(title);
         console.log(price);

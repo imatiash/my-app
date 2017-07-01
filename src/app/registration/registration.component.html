@@ -1,21 +1,23 @@
 <div *ngIf="!showSuccessMessage">
     <form [formGroup]="registrationForm" class="form" (ngSubmit)="onSubmitRegistration($event, registrationForm)">
-    <fieldset>
-        <div class="form__row">
-            <input class="form__input" type="text" formControlName="firstName" />
+        <fieldset>
+            <div class="form__row">
+                <input class="form__input" type="text" formControlName="firstName" />
+            </div>
+            <div class="form__row">
+                <input class="form__input" type="text" formControlName="lastName" />
+            </div>
+            <div class="form__row">
+                <input class="form__input" type="text" formControlName="email" />
+            </div>
+            <div class="form__row">
+                <input class="form__input" type="text" formControlName="age" />
+            </div>
+        </fieldset>
+        <div class="div-button">
+            <button md-button>Register</button>
         </div>
-        <div class="form__row">
-            <input class="form__input" type="text" formControlName="lastName" />
-        </div>
-        <div class="form__row">
-            <input class="form__input" type="text" formControlName="email" />
-        </div>
-        <div class="form__row">
-            <input class="form__input" type="text" formControlName="age" />
-        </div>
-    </fieldset>
-    <input type="submit" value="register">
-</form>
+    </form>
 </div>
 <div *ngIf="showSuccessMessage">
     Thank you, {{user?.firstName}}! You successfully registered go to your email to activate account

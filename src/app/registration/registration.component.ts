@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import {User} from '../models/user';
-import {UserService} from '../services/user.service';
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms"
+import {User} from "../models/user";
+import {UserService} from "../services/user.service";
 import { RegExpCommon } from  "../common/regexp.common";
 
 @Component({
-  selector: 'app-registration',
-  templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.css']
+  selector: "app-registration",
+  templateUrl: "./registration.component.html",
+  styleUrls: ["./registration.component.styl"]
 })
 export class RegistrationComponent implements OnInit {
 

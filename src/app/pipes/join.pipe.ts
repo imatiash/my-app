@@ -1,7 +1,7 @@
-import { Pipe, PipeTransform} from '@angular/core';
+import { Pipe, PipeTransform} from "@angular/core";
 
 @Pipe({
-name: 'join'
+name: "join"
     })
 
     export class JoinPipe implements PipeTransform {
@@ -9,8 +9,8 @@ name: 'join'
         transform(arr: Array<string>, start?: any, end?: any): string{
           
            let res = arr;
-           if (start !== undefined){
-               if(end !== undefined){
+           if (start !== undefined) {
+               if (end !== undefined) {
                    res = arr.slice (start-1, end -1);
                }
                else {
@@ -18,6 +18,6 @@ name: 'join'
                }
            }
 
-            return res.join(', '); 
+            return res.join(", "); 
         }
     }

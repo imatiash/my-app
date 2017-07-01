@@ -1,20 +1,40 @@
-<h1>{{title}}</h1>
-<!--<app-home></app-home>-->
+<!-- Implemented navigation for app -->
+<header class="header">
+    <nav class="nav-top">
+        <li *ngFor="let item of navItems" 
+            routerLinkActive="nav-top__item-active"
+            [routerLinkActiveOptions]="{exact: true}"
+            class="nav-top__item">
+            <!-- Added navigation links with routerLink directive to provide app navigation beetwen components -->
+            <!-- Added routerLinkActive directive to style active link -->
+            <!-- routerLinkActiveOptions is used for applying exactly for direct link -->
+            <a [routerLink]="item.link"
+               class="nav-top__item-link">
+               {{item.name}}
+            </a>
+        </li>
+    </nav>
+    <nav class="nav-auth">
+        <li class="nav-auth__item"
+            routerLinkActive="nav-auth__item-active"
+            [routerLinkActiveOptions]="{exact: true}">
+            <a routerLink="Registration"
+               class="nav-auth__item-link">
+               Sign Up
+            </a>
+        </li>
+        <li class="nav-auth__item"
+            [class.nav-auth__item-active]="isLoginFormShown"
+            (click)="showLoginForm($event)">
+            <a class="nav-auth__item-link">
+               Sign In
+            </a>
+        </li>
+    </nav>
+    <div class="login-form" *ngIf="isLoginFormShown">
+        <app-authorization></app-authorization>
+    </div>
+</header>
 
-<!--Implement navigation for app-->
-<nav>
-    <!--Add navigation links with routerLink directive to provide app navigatio-->
-    <!--Add routerLinkActive directive to style active link-->
-    <li *ngFor = "let item of navItems">
-        <a [routerLink] = "item.link"
-           routerLinkActive = "active-link"
-           [routerLinkActiveOptions] = "{exact: true}"> {{item.name}}</a>
-    </li>
-</nav>
-<!--Used router-outlet directive to show containing of routing module-->
+<!-- Used router-outlet directive to show containing of routing module -->
 <router-outlet></router-outlet>
-
-
-<!--test-->
-<!--<app-phone></app-phone>
-<app-catalog></app-catalog>-->
