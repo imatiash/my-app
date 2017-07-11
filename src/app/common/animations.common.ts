@@ -25,4 +25,17 @@ export namespace Animations {
         transition("inactive => active", animate("300ms ease-in")),
         transition("active => inactive", animate("300ms ease-out"))
     ])
+
+  export const LOGIN_STATE: any = 
+  trigger('loginState', [
+    transition('void => *', [
+      style({ transform: 'scale3d(.3, .3, .3)' }),
+      animate(200)
+    ]),
+    transition('* => void', [
+      animate(200, style({ transform: 'scale3d(.0, .0, .0)' }))
+    ])
+  ])
+
+
 }

@@ -1,71 +1,115 @@
+
 import { BrowserModule } from "@angular/platform-browser";
-// Imported Animations module fro angular animations
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from "@angular/core";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpModule } from "@angular/http";
+import { 
+    MdButtonModule,
+    MdInputModule,
+    MdTabsModule,
+    MdToolbarModule,
+} from "@angular/material";
+
+import { AdminModule } from "./admin/admin.module";
+import { CatalogModule } from "./catalog/catalog.module";
+import { RoutingModule } from "./routing.module";
+
 import { AppComponent } from "./app.component";
-import { AppRoutingModule } from "./modules/routing.module";
-import { boldDirective } from "./directives/bold.directive";
-import { FactorialPipe } from "./pipes/factorial.pipe";
-import { OrderByPipe } from "./pipes/orderby.pipe";
-import { SearchFilterPipe } from "./pipes/searchfilter.pipe";
-
-import { FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { HomeComponent } from "./home/home.component";
-import { JoinPipe } from "./pipes/join.pipe";
-import { UserService } from "./services/user.service";
-import { WhileDirective } from "./directives/while.directive";
-
-import { CatalogComponent } from "./catalog/catalog.component";
-import { ContactUsComponent } from "./contact-us/contact-us.component";
-import { NotFoundComponent } from "./not-found/not-found.component";
-import { PhoneComponent } from "./phone/phone.component";
-
-import {HttpModule} from "@angular/http";
-import { RegistrationComponent } from "./registration/registration.component";
-// Import hammerjs for angular material
-import "hammerjs";
 import { AuthorizationComponent } from "./authorization/authorization.component";
+import { ContactUsComponent } from "./contact-us/contact-us.component";
+import { HomeComponent } from "./home/home.component";
+import { NotFoundComponent } from "./not-found/not-found.component";
+import { RegistrationComponent } from "./registration/registration.component";
 
-import {MaterialModule} from '@angular/material';
+import { UsersService } from "./services/users.service";
 
-// import {
-//     MdToolbarModule,
-//     MdIconModule,
-//     MdMenuModule,
-//     MdButtonModule,
-//     MdSelectModule,
-//     MdSnackBarModule,
-//     MdSnackBar, MdInputModule
-// } from '@angular/material';
-
+import "hammerjs";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    boldDirective,
-    FactorialPipe,
-    JoinPipe,
-    OrderByPipe,
-    SearchFilterPipe,
-    HomeComponent,
-    WhileDirective,
-    CatalogComponent,
-    ContactUsComponent,
-    NotFoundComponent,
-    PhoneComponent,
-    RegistrationComponent,
-    AuthorizationComponent
-  ],
-  imports: [
-    AppRoutingModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    HttpModule,
-    ReactiveFormsModule,
-    MaterialModule
-  ],
-  providers: [UserService],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        AuthorizationComponent,
+        ContactUsComponent,
+        HomeComponent,
+        NotFoundComponent,
+        RegistrationComponent
+    ],
+    imports: [
+        AdminModule,
+        BrowserAnimationsModule,
+        BrowserModule,
+        CatalogModule,
+        FormsModule,
+        HttpModule,
+        MdButtonModule,
+        MdInputModule,
+        MdTabsModule,
+        MdToolbarModule,
+        ReactiveFormsModule,
+        RoutingModule
+    ],
+    providers: [UsersService],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
+// import { BrowserModule } from "@angular/platform-browser";
+// import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+// import { NgModule } from "@angular/core";
+// import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+// import { HttpModule } from "@angular/http";
+// import { 
+//     MdButtonModule,
+//     MdInputModule,
+//     MdToolbarModule,
+// } from "@angular/material";
+
+// import { AppRoutingModule } from "./modules/routing.module";
+
+// import { AppComponent } from "./app.component";
+// import { AuthorizationComponent } from "./authorization/authorization.component";
+// import { ContactUsComponent } from "./contact-us/contact-us.component";
+// import { HomeComponent } from "./home/home.component";
+// import { NotFoundComponent } from "./not-found/not-found.component";
+// import { RegistrationComponent } from "./registration/registration.component";
+
+// import { UsersService } from "./services/user.service";
+
+// import { OrderByPipe } from "./pipes/orderby.pipe";
+// import { SearchFilterPipe } from "./pipes/searchfilter.pipe";
+
+//  import { boldDirective } from "./directives/bold.directive";
+
+// import "hammerjs";
+// import { HeroListComponentComponent } from './hero-list-component/hero-list-component.component';
+// import { CategoryComponent } from './category/category.component';
+
+// @NgModule({
+//     declarations: [
+//         AppComponent,
+//         AuthorizationComponent,
+//         ContactUsComponent,
+//         HomeComponent,
+//         NotFoundComponent,
+//         RegistrationComponent,
+//         OrderByPipe,
+//         SearchFilterPipe,
+//         boldDirective,
+//         HeroListComponentComponent,
+//         CategoryComponent
+//     ],
+//     imports: [
+//         BrowserAnimationsModule,
+//         BrowserModule,
+//         FormsModule,
+//         HttpModule,
+//         MdButtonModule,
+//         MdInputModule,
+//         MdToolbarModule,
+//         ReactiveFormsModule,
+//         AppRoutingModule
+//     ],
+//     providers: [UsersService],
+//     bootstrap: [AppComponent]
+// })
+// export class AppModule { }

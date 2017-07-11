@@ -1,5 +1,9 @@
+<p>
+    home works!
+</p>
+
 <!-- Display all users from user service -->
-<ul class="user__list">
+<!--<ul class="user__list">
     <ng-template ngFor let-user | async [ngForOf]="users | OrderBy : '-lastName'" >
         <li 
             [@userState]="user.state"
@@ -11,17 +15,17 @@
            {{user.id}} | {{user.firstName}} | {{user.lastName}}
         </li>
     </ng-template>
-</ul>
+</ul>-->
 
-<input #txtFname placeholder="first name" />
+<!--<input #txtFname placeholder="first name" (oninput) />-->
 
-<ul>
+<!--<ul>
   <li *ngFor="let user of users | SearchFilter: 'firstName' : txtFname.value" (click)="onSelect(user)">
     {{user.id}} | {{user.firstName}} | {{user.lastName}}
   </li>
-</ul>
+</ul>-->
 
-<div>
+<!--<div>
   <form [formGroup]="userForm" novalidate (ngSubmit)="onSubmit($event,userForm)">
     <div class="form__row">
       <label for="firstName">First Name:</label>
@@ -72,9 +76,8 @@
     <div class="form_row">
       <input type="submit" value="submit">
 
-      <!--<input type="submit" value="submit" [disabled]="userForm.invalid">-->
     </div>
   </form>
 </div>
 
-{{userForm.invalid}}| {{userForm.valid}}
+{{userForm.invalid}}| {{userForm.valid}}-->

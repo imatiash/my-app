@@ -1,9 +1,12 @@
-import { Component, ElementRef, AfterViewChecked, OnInit } from "@angular/core";
+import { Component, ElementRef } from "@angular/core";
 
-// Add new class for navigation items elements
+import { AuthorizationComponent } from "./authorization/authorization.component";
+
+import { User } from "./models/user";
+
 export class NavItem {
-  name: string;
-  link: string;
+    name: string;
+    link: string;
 }
 
 @Component({
@@ -12,44 +15,47 @@ export class NavItem {
   styleUrls: ["./app.component.styl"]
 })
 
-export class AppComponent implements AfterViewChecked, OnInit {
+export class AppComponent {
     isLoginFormShown: boolean = false;
-    signInElt: ElementRef;
+    loginElt: ElementRef;
     loginFormElt: ElementRef;
     title: string = "Angular ITEA";
+    users: User[];
 
-  // Variable with navigation items
-  navItems: NavItem[]  = [
-    { name: "Home", link: "Home" },
-    { name: "Catalog", link: "Catalog" },
-    { name: "Contact-Us", link: "Contact-Us" },
-    { name: "Registration", link: "Registration" }
-  ]
+    navItems: NavItem[] = [
+        { name: "Home", link: "home" },
+        { name: "Catalog", link: "catalog" },
+        { name: "Contact Us", link: "contact-Us" }
+    ]
 
     constructor(
         private eltRef: ElementRef
     ) {
-        this.signInElt = this.eltRef;
+        this.loginElt = this.eltRef;
         this.loginFormElt = this.eltRef;
     }
 
-      showLoginForm(e: Event) {
+    private findAncestor(el: any, cls: String) {
+        while ((el = el.parentElement) && !el.classList.contains(cls)) {};  // Linter: "while statements must be braces" what does it mean?
+        return el;
+    }
+
+    showLoginForm(e: Event) {
         e.stopPropagation();
-        this.signInElt.nativeElement = e.target;
+        this.loginElt.nativeElement = e.target;
         this.isLoginFormShown = true;
+        document.addEventListener('click', this.hideLoginFormListener.bind(this));
     }
 
-    ngAfterViewChecked() {
-        this.loginFormElt.nativeElement = document.querySelector(".login-form");
-        console.log(this.loginFormElt.nativeElement);
+    private hideLoginFormListener(e: Event) {
+        e.stopPropagation();
+        if (!this.findAncestor(e.target, 'login-form')) {
+            this.isLoginFormShown = false;
+            document.removeEventListener('click', this.hideLoginFormListener);
+        }
     }
 
-    ngOnInit() {
-        document.addEventListener("click", (e: Event) => {
-            if ((e.target !== this.signInElt.nativeElement || e.target !== this.loginFormElt.nativeElement) 
-            && this.isLoginFormShown === true ) {
-                this.isLoginFormShown = false;
-            }
-        })
+    showAlert(str: string) {
+        alert(str);
     }
 }
