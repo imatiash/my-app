@@ -10,20 +10,32 @@ import { CategoriesService } from "../services/categories.service";
     styleUrls: ["./category.component.styl"]
 })
 export class CategoryComponent implements OnInit {
-  
+
     category: Category;
+    editCategory: Category;
 
     constructor(
         private categoriesService: CategoriesService,
         private activatedRoute: ActivatedRoute
     ) { }
 
+    onCategoryEdit(cat: Category) {
+        this.editCategory = cat;
+    }
+
     ngOnInit() {
         let id: number = this.activatedRoute.snapshot.params["id"];
         this.categoriesService.getCategoryById(id)
-                              .subscribe(
-                                  category => this.category = category,
-                                  error => console.error(error)
+                              .then(
+                                  category => this.category = category
                               )
     }
+
+    // canDeactivate() {
+    //     if(!this.category || this.category.name === this.editCategory.name) {
+    //         return true;
+    //     }
+
+    //     return confirm("Discard changes?");
+    // }
 }

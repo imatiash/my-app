@@ -35,7 +35,7 @@ export class UsersService {
                             response => response.json() as User
                         )
                         .catch(
-                            error => this.errorHandler
+                            error => this.errorHandler(error)
                         )
     }
 
@@ -75,6 +75,7 @@ export class UsersService {
     }
 
     private errorHandler(err: Error) {
-        return console.error(err)
+        console.error(err);
+        return null;
     }
 }

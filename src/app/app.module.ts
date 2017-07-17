@@ -25,6 +25,9 @@ import { RegistrationComponent } from "./registration/registration.component";
 import { UsersService } from "./services/users.service";
 
 import "hammerjs";
+// import { CategoriesManagementComponent } from './categories-management/categories-management.component';
+// import { UserManagementComponent } from './user-management/user-management.component';
+// import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 
 @NgModule({
     declarations: [
@@ -34,6 +37,9 @@ import "hammerjs";
         HomeComponent,
         NotFoundComponent,
         RegistrationComponent
+        // CategoriesManagementComponent,
+        // UserManagementComponent,
+        // AdminDashboardComponent
     ],
     imports: [
         AdminModule,

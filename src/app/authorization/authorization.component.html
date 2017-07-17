@@ -1,13 +1,16 @@
-<form [formGroup]="authorizationForm" class="form" *ngIf="user === null">
+ <form [formGroup]="loginForm" class="form" (ngSubmit)="logIn()" >
     <md-input-container class="full-width">
         <input mdInput formControlName="email" placeholder="Email">
     </md-input-container>
     <md-input-container class="full-width">
-        <input mdInput formControlName="password" placeholder="Password">
+        <input mdInput formControlName="pass" placeholder="Password">
     </md-input-container>
-    <button md-raised-button type="submit">Sign in</button>
-</form>
-<div *ngIf="user !== null">
-    Hello, {{user?.firstName}}
-    <button md-raised-button (click)="showAlert(user.firstName)">Show alert!</button>
-</div>
+       <button type="submit" md-raised-button>Log In</button>
+    </form>
+
+    {{message}} 
+<!--<div>
+    {{message}}
+    <button md-raised-button (click)="logIn()">Log In</button>
+    <button md-raised-button (click)="logOut()">Log Out</button>
+</div>-->

@@ -4,6 +4,10 @@ import { RouterModule, Routes } from "@angular/router";
 import { CatalogComponent } from "./catalog.component";
 import { CategoryComponent } from "../category/category.component";
 
+import { CanDeactivateGuardService } from "../services/can-deactivate-guard.service";
+
+import { CatalogResolverService } from "../services/catalog-resolver.service";
+
 const CATALOG_ROUTES: Routes = [
     { 
         path: "catalog", 
@@ -11,7 +15,11 @@ const CATALOG_ROUTES: Routes = [
         children: [
             {
                 path: ":id",
-                component: CategoryComponent
+                component: CategoryComponent,
+                resolve: {
+                    category: CatalogResolverService
+                }
+                // canDeactivate: [CanDeactivateGuardService]
             }
         ] 
     }
